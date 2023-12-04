@@ -1,0 +1,47 @@
+
+<div id="contenedor" class="form">
+
+  <form (ngSubmit)="submit()" #usuarioForm="ngForm">
+
+    <div class="form-group">
+      <label for="nombre">Nombre:</label>
+      <input type="text" [(ngModel)]="usuario.nombre" name="nombre" #nombre="ngModel" required>
+      <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" class="alert">
+        <div *ngIf="nombre.errors?.['required']">Campo requerido</div>
+      </div>
+    </div>
+
+
+    <!-- Agrega un div para el spinner -->
+    <div *ngIf="mostrarSpinner" class="spinner">
+      <!-- Puedes personalizar este contenido para mostrar el spinner -->
+      Spinner...
+    </div>
+
+    <div class="form-group">
+      <label for="contrasegna">Contraseña:</label>
+      <input type="password" [(ngModel)]="usuario.contrasena" name="contrasegna" #contrasegna="ngModel" required minlength="4">
+      <div *ngIf="contrasegna.invalid && (contrasegna.dirty || contrasegna.touched)" class="alert">
+        <div *ngIf="contrasegna.errors?.['required']">Campo requerido</div>
+        <div *ngIf="contrasegna.errors?.['minlength']">Mínimo 4 caracteres</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="genero">Género:</label>
+      <select [(ngModel)]="usuario.genero" name="genero" (change)="handleGeneroChange($event)">
+        <option value="masculino">Masculino</option>
+        <option value="femenino">Femenino</option>
+        <option value="no-binario">No binario</option>
+      </select>
+    </div>
+
+    <button type="submit" [disabled]="!usuarioForm.form.valid || mostrarSpinner">Entrar</button>
+
+  </form>
+
+</div>
+
+<footer>
+  <p>&copy; 2023 Tienda Retro Nintendo 64. Todos los derechos reservados.</p>
+</footer>

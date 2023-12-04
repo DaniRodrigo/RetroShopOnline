@@ -1,0 +1,21 @@
+.products {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+
+    .product {
+        width: 100%; // Por defecto, ocupa el 100% del ancho en pantallas pequeñas
+
+        @media screen and (min-width: 600px) {
+            width: 50%; // Ocupa el 50% del ancho en pantallas medianas
+        }
+
+        @media screen and (min-width: 992px) {
+            width: 33.33%; // Ocupa el 33.33% del ancho en pantallas más grandes
+        }
+
+        .container {
+            padding: 15px;
+        }
+    }
+}

@@ -1,0 +1,32 @@
+<form #contactoForm="ngForm" (ngSubmit)="submit(contactoForm)">
+  <div>
+    <label for="nombre">Nombre:</label>
+    <input type="text" [(ngModel)]="contacto.nombre" name="nombre" required>
+    <div *ngIf="contactoForm.controls['nombre'].hasError('required') && (contactoForm.controls['nombre'].dirty || contactoForm.controls['nombre'].touched)" class="alert">
+      <div>Campo requerido</div>
+    </div>
+  </div>
+
+  <div>
+    <label for="email">Correo Electrónico:</label>
+    <input type="email" [(ngModel)]="contacto.email" name="email" required>
+    <div *ngIf="contactoForm.controls['email'].hasError('required') && (contactoForm.controls['email'].dirty || contactoForm.controls['email'].touched)" class="alert">
+      <div>Campo requerido</div>
+    </div>
+  </div>
+
+  <div>
+    <label for="mensaje">Mensaje:</label>
+    <textarea [(ngModel)]="contacto.mensaje" name="mensaje" required></textarea>
+    <div *ngIf="contactoForm.controls['mensaje'].hasError('required') && (contactoForm.controls['mensaje'].dirty || contactoForm.controls['mensaje'].touched)" class="alert">
+      <div>Campo requerido</div>
+    </div>
+  </div>
+
+  <div>
+    <label for="juegoBuscado">Juego de Nintendo 64 Buscado:</label>
+    <input type="text" [(ngModel)]="contacto.juegoBuscado" name="juegoBuscado">
+  </div>
+
+  <button type="submit" [disabled]="!contactoForm.form.valid">Enviar</button>
+</form>
